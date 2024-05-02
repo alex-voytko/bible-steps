@@ -1,0 +1,43 @@
+#backdrop {
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    visibility: hidden;
+    opacity: 0;
+    transition: $transitionDefault;
+    backdrop-filter: blur(3px);
+
+    .modal {
+        width: 80vw;
+        height: 90vh;
+        left: 10vw;
+        bottom: 0;
+        transform: translateY(100%);
+        opacity: 0;
+        background-color: $bodyBg;
+        border-radius: 50px 50px 0 0;
+        padding: 30px;
+        transition: $transitionDefault;
+    }
+
+    .btn-close {
+        top: 30px;
+        right: 30px;
+
+        padding: 10px;
+        border: 2px solid white;
+        border-radius: 50%;
+        path {
+            fill: white;
+        }
+    }
+
+    &.visible {
+        visibility: visible;
+        opacity: 1;
+
+        .modal {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+}
