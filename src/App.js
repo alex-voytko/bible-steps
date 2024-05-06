@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { ThreeCircles } from 'react-loader-spinner'
 import { randomNumberGenerate } from './helpers';
+import { fetchBookNotations } from './api';
 import data from './data/book-list.json'
 import AppBar from './components/AppBar';
 import Modal from './components/Modal';
@@ -12,18 +13,18 @@ function App() {
   const [newTestament, setNewTestament] = useState([]);
   const [fetchedBookData, setFetchedBookData] = useState({});
   const [openedBook, setOpenedBook] = useState({});
+  const [openedIndexBook, setOpenedIndexBook] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   console.log(openedBook)
 
   const onOpenBook = (book, bookIndex) => {
     setIsLoading(true);
-    fetch('https://sheetdb.io/api/v1/stmwtbnd73kku?limit=1&sheet=' + book.testament + '&offset=' + bookIndex)
-      .then(response => response.json())
+    fetchBookNotations(book, bookIndex)
       .then(data => {
-        console.log('DATA: ', data);
         setFetchedBookData(data[0]);
         setOpenedBook(book);
+        setOpenedIndexBook(bookIndex);
       })
       .finally(() => setIsLoading(false));
   }
@@ -31,6 +32,7 @@ function App() {
   const resetBook = () => {
     setFetchedBookData({});
     setOpenedBook({});
+    setOpenedIndexBook(null);
   }
 
   useEffect(() => {
@@ -39,7 +41,7 @@ function App() {
   }, [])
 
   return (
-    <AppContext.Provider value={resetBook}>
+    <AppContext.Provider value={[resetBook, onOpenBook]}>
       {isLoading &&
         <ThreeCircles
           visible={true}
@@ -64,7 +66,7 @@ function App() {
                         `rgba(${randomNumberGenerate(200, 255)},${randomNumberGenerate(200, 255)},${randomNumberGenerate(200, 255)},0.7)`
                     }}
                     key={book.name}
-                    className='book-list__item fit-content px-3 py-3 inline-block cursor-pointer'
+                    className='book-list__item fit-content px-3 py-3 inline-block cursor-pointer rounded-sm'
                     onClick={() => onOpenBook(book, index)}
                   >
                     {book.name}
@@ -82,7 +84,7 @@ function App() {
                         `rgba(${randomNumberGenerate(200, 255)},${randomNumberGenerate(200, 255)},${randomNumberGenerate(200, 255)},0.7)`
                     }}
                     key={book.name}
-                    className='book-list__item fit-content px-3 py-3 inline-block cursor-pointer'
+                    className='book-list__item fit-content px-3 py-3 inline-block cursor-pointer rounded-sm'
                     onClick={() => onOpenBook(book, index)}
                   >
                     {book.name}
@@ -92,7 +94,7 @@ function App() {
           </div>
         </div>
       </div>
-      <Modal book={fetchedBookData} chapters={openedBook.chapters} />
+      <Modal book={fetchedBookData} openedBook={openedBook} openedIndexBook={openedIndexBook} />
     </AppContext.Provider>
   );
 }

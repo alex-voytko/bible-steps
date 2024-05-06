@@ -11,8 +11,15 @@ body {
 
 button {
     transition: all 0.3s ease-in;
+    &:disabled {
+        opacity: 0;
+    }
+    &:not(:disabled):hover {
+        transform: scale(1.1);
+    }
 }
-
-button:hover {
-    transform: scale(1.1);
-}
+input:focus,
+textarea:focus {
+    outline: 2px solid blue;
+    border: none;
+} 

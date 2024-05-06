@@ -4,7 +4,6 @@
     opacity: 0;
     transition: $transitionDefault;
     backdrop-filter: blur(3px);
-
     .modal {
         width: 80vw;
         height: 90vh;
@@ -17,7 +16,6 @@
         padding: 30px;
         transition: $transitionDefault;
     }
-
     .btn-close {
         top: 30px;
         right: 30px;
@@ -29,7 +27,6 @@
             fill: white;
         }
     }
-
     &.visible {
         visibility: visible;
         opacity: 1;
@@ -39,5 +36,14 @@
             opacity: 1;
         }
     }
-
+    .chapter-list li.selected {
+        outline: 2px solid blue;
+        background-color: white;
+    }
+    .btn-save {
+        box-shadow: $boxShadowDefault;
+        &:hover {
+            background: white !important;
+        }
+    }
 }

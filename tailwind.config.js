@@ -5,6 +5,13 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    borderRadius: {
+      'none': '0',
+      'sm': '10px',
+      'md': '20px',
+      'lg': '30px',
+      'full': '50%',
+    }
   },
   plugins: [],
 }
