@@ -80,6 +80,7 @@
     @media screen and (max-width: $maxMobile) {
         .chapter-list {
             height: calc(100vh - 130px);
+            padding-bottom: 40px;
         }
         .chapter-list li {
             padding: 15px;

@@ -79,7 +79,7 @@ function App() {
         />
       }
       <AppBar />
-      <div className="app px-10 py-3">
+      <div className="app px-10 pt-3 pb-10">
         <div className='flex page-width'>
           <div className='w-1/2'>
             <h2 className='text-center py-5 font-medium text-gray-500'>Старий завіт:</h2>
