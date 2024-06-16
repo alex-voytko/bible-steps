@@ -1,0 +1,29 @@
+body.is-dark {
+    background-color: $bodyBcDark;
+    color: $bodyDark;
+    .app-header {
+        background-color: black;
+    }
+    .book-list__item:hover,
+    #backdrop .btn-save:hover {
+        background-color: black !important;
+    }
+    #backdrop .modal {
+        background-color: black;
+    }
+    #backdrop svg path {
+        fill: $bodyDark;
+    }
+    #backdrop button:hover svg path {
+        fill: white;
+    }
+    #backdrop textarea,
+    #backdrop select,
+    #backdrop .btn-cancel {
+        background-color: $bodyBcDark;
+    }
+    #backdrop .chapter-list li.selected {
+        background-color: $bodyBcDark;
+    }
+    
+}

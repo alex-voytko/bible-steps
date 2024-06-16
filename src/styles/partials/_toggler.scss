@@ -1,0 +1,70 @@
+.toggler-container {
+    width: fit-content;
+    margin-left: auto;
+  }
+  .toggle-label {
+    position: relative;
+    width: 45px;
+    height: 19px;
+    display: block;
+    background: $bodyBc;
+    border-radius: 38px;
+    box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
+      inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%);
+    cursor: pointer;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 19px;
+      height: 19px;
+      top: 0;
+      left: 0;
+      background: rgb(219, 219, 101);
+      border-radius: 50%;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    svg {
+      position: absolute;
+      width: 15px;
+      transform: translateY(-50%);
+      height: 15px;
+      z-index: 100;
+      transition: 0.3s;
+    }
+    .sun-icon {
+      top: 50%;
+      left: 2px;
+    }
+    .moon-icon {
+      top: 50%;
+      right: 2px;
+    }
+  }
+  
+  #dark-mode-toggle {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    &:checked + .toggle-label {
+      background: $bodyBcDark;
+    }
+    &:checked + .toggle-label:after {
+      left: 45px;
+      transform: translateX(-100%);
+      background: rgb(46, 9, 147);
+    }
+    &:checked + .toggle-label .sun-icon * {
+      fill: black;
+    }
+    &:checked + .toggle-label .moon-icon * {
+      fill: white;
+    }
+    &:checked + .toggle-label {
+      box-sizing: border-box;
+    }
+  }
+  .toggle-label,
+  .toggle-label:after {
+    transition: $transitionDefault;
+  }

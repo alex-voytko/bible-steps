@@ -8,7 +8,7 @@ import { ReactComponent as IconClose } from '../icons/close.svg';
 import { ReactComponent as IconEdit } from '../icons/edit.svg';
 import { ReactComponent as IconAdd } from '../icons/add.svg';
 
-function Modal({ book, openedBook, openedIndexBook }) {
+function Modal({ book, openedBook, openedIndexBook, minMax }) {
     const [isTyping, setIsTyping] = useState(false);
     const [isSelect, setIsSelect] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +17,7 @@ function Modal({ book, openedBook, openedIndexBook }) {
     const [chapters, setChapters] = useState([]);
     const [selectInput, setSelectInput] = useState("");
 
-    const [resetBook, onOpenBook] = useContext(AppContext);
+    const {resetBook, onOpenBook} = useContext(AppContext);
 
     const onSelectChapter = index => setSelectedChapter(selectedChapter === index ? null : index);
 
@@ -57,6 +57,7 @@ function Modal({ book, openedBook, openedIndexBook }) {
         setSelectedChapter(null);
         setEditValue('');
         setIsTyping(false);
+        setIsSelect(false);
         resetBook();
     }
 
@@ -117,15 +118,14 @@ function Modal({ book, openedBook, openedIndexBook }) {
                                             hidden: (editValue === book[selectedChapter + 1] && !isSelect) || (isSelect && !editValue)
                                         })}
                                         style={{
-                                            background: `rgba(${randomNumberGenerate(200, 255)},${randomNumberGenerate(200, 255)},${randomNumberGenerate(200, 255)},0.7)`
+                                            background: `rgba(${randomNumberGenerate(minMax)},${randomNumberGenerate(minMax)},${randomNumberGenerate(minMax)},0.7)`
                                         }}
                                         onClick={() => onButtonSaveClick(isSelect ? 'add' : 'edit')}
                                     >
                                         Зберегти
                                     </button>
                                     <button
-                                        className="fit-content px-3 py-3 mr-3 rounded-sm"
-                                        style={{background: 'rgba(230,230,230,0.7)'}}
+                                        className="btn-cancel fit-content px-3 py-3 mr-3 rounded-sm"
                                         onClick={() => {
                                             setIsTyping(false);
                                             if (isSelect) setIsSelect(false);

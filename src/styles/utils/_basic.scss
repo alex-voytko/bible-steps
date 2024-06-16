@@ -2,7 +2,7 @@ body {
     font-family: "Inter", sans-serif;
     font-weight: 200;
     font-style: normal;
-    background-color: $bodyBg;
+    background-color: $bodyBc;
 }
 .page-width {
     max-width: 1400px;
@@ -20,6 +20,6 @@ button {
 }
 input:focus,
 textarea:focus {
-    outline: 2px solid blue;
+    outline: 2px solid $accent;
     border: none;
 } 
