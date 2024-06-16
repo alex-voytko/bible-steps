@@ -8,4 +8,11 @@
             transform: scale(1.05);
         }
     }
+
+    @media screen and (max-width: $maxMobile) {
+        .book-list__item  {
+            padding: 0.3rem;
+            font-size: 12px;
+        }
+    }
 }

@@ -40,6 +40,14 @@ function App() {
     setNewTestament(data.books.filter(book => book.testament === 'new'));
   }, [])
 
+  useEffect(() => {
+    if (JSON.stringify(openedBook) === '{}') {
+      document.body.classList.remove('overflow-hidden');
+    } else {
+      document.body.classList.add('overflow-hidden');
+    }
+  }, [openedBook])
+
   return (
     <AppContext.Provider value={[resetBook, onOpenBook]}>
       {isLoading &&

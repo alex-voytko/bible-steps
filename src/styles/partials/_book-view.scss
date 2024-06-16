@@ -4,6 +4,7 @@
     opacity: 0;
     transition: $transitionDefault;
     backdrop-filter: blur(3px);
+    overflow: hidden;
     .modal {
         width: 80vw;
         height: 90vh;
@@ -15,16 +16,38 @@
         border-radius: 50px 50px 0 0;
         padding: 30px;
         transition: $transitionDefault;
+        @media screen and (max-width: $maxMobile) {
+            width: 100vw;
+            height: 100vh;
+            max-height: 100vh;
+            left: 0;
+            border-radius: 0;
+            padding-right: 15px;
+            padding-left: 15px;
+            overflow: hidden;
+        }
     }
     .btn-close {
         top: 30px;
         right: 30px;
-
         padding: 10px;
         border: 2px solid white;
         border-radius: 50%;
         path {
             fill: white;
+        }
+        @media screen and (max-width: $maxMobile) {
+            top: 10px;
+            right: 10px;
+            border: 2px solid black;
+            padding: 8px;
+            path {
+                fill: black;
+            }
+            svg {
+                width: 24px;
+                height: 24px;
+            }
         }
     }
     &.visible {
@@ -39,11 +62,51 @@
     .chapter-list li.selected {
         outline: 2px solid blue;
         background-color: white;
+        outline-offset: -2px;
     }
     .btn-save {
         box-shadow: $boxShadowDefault;
         &:hover {
             background: white !important;
+        }
+    }
+    .chapter-list {
+        height: calc(90vh - 110px);
+        overflow-y: scroll;
+    }
+    @media screen and (max-width: $maxMobile) {
+        .chapter-list {
+            height: calc(100vh - 130px);
+        }
+        .chapter-list li {
+            padding: 15px;
+            border-radius: 15px;
+        }
+        .chapter-list p {
+            padding-right: 0;
+            font-size: 12px;
+        }
+        .chapter-list li > p:first-child {
+            min-width: 30px;
+            text-align: start;
+        }
+        .toolbar {
+            flex-direction: column;
+            font-size: 12px;
+        }
+        .toolbar button {
+            padding: 0.3rem;
+        }
+        .toolbar h3 {
+            padding-top: 0;
+            padding-left: 0;
+        }
+        textarea {
+            font-size: 12px;
+        }
+        .btn-container button svg {
+            width: 24px;
+            height: 24px;
         }
     }
 }

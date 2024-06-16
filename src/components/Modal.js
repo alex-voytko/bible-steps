@@ -76,7 +76,7 @@ function Modal({ book, openedBook, openedIndexBook }) {
 
     return <div
                 className={
-                    classNames('absolute inset-0 z-1',
+                    classNames('fixed inset-0 z-1 w-screen h-screen',
                         { visible: JSON.stringify(book).length > 2 && openedBook.chapters }
                     )
                 }
@@ -94,7 +94,7 @@ function Modal({ book, openedBook, openedIndexBook }) {
                         wrapperClass="spinner-wrapper"
                     />
                 }
-                <div className="modal book-view absolute overflow-scroll">
+                <div className="modal book-view absolute">
                     <div className="toolbar flex justify-between mb-3">
                         <h3 className="text-left font-medium pl-[68px] py-4">{book['Книга']}</h3>
                         <div className="btn-container flex items-center">
@@ -121,7 +121,7 @@ function Modal({ book, openedBook, openedIndexBook }) {
                                         }}
                                         onClick={() => onButtonSaveClick(isSelect ? 'add' : 'edit')}
                                     >
-                                        Зберегти зміни
+                                        Зберегти
                                     </button>
                                     <button
                                         className="fit-content px-3 py-3 mr-3 rounded-sm"

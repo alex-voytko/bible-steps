@@ -1,0 +1,12 @@
+@media screen and (max-width: $maxMobile) {
+    .app {
+        padding-right: 15px;
+        padding-left: 15px;
+        & > .flex {
+            flex-direction: column;
+            & > div {
+                width: 100%;
+            }
+        }
+    }
+}
